@@ -1,0 +1,39 @@
+<div class="container">
+  <h2>Tarkista ajanvaraus</h2>
+  
+  <div class="form-group">
+    <label>Henkilötunnus:</label>
+    <input 
+      type="text" 
+      [(ngModel)]="hetu" 
+      placeholder="ppkkvv-xxxx"
+      maxlength="11"
+    />
+    <button (click)="haeAjanvaraukset()">Hae</button>
+  </div>
+
+  @if (loading) {
+    <div class="loading">Haetaan tietoja...</div>
+  }
+
+  @if (error) {
+    <div class="error">{{ error }}</div>
+  }
+
+  @if (ajanvaraukset && ajanvaraukset.length > 0) {
+    <div class="results">
+      <h3>Löydetyt ajanvaraukset:</h3>
+      @for (varaus of ajanvaraukset; track varaus) {
+        <div class="varaus-card">
+          <p><strong>Aika:</strong> {{ varaus.startTime | date:'dd.MM.yyyy HH:mm' }}</p>
+          <p><strong>Palvelu:</strong> {{ varaus.serviceName }}</p>
+          <p><strong>Sijainti:</strong> {{ varaus.locationName }}</p>
+        </div>
+      }
+    </div>
+  }
+
+  @if (ajanvaraukset && ajanvaraukset.length === 0 && !loading) {
+    <div class="no-results">Ei ajanvarauksia löytynyt.</div>
+  }
+</div>

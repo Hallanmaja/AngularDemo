@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { Automaatti } from './automaatti';
+import { Rest } from './rest';
 
-describe('Automaatti', () => {
-  let service: Automaatti;
+describe('Rest', () => {
+  let service: Rest;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(Automaatti);
+    service = TestBed.inject(Rest);
   });
 
   it('should be created', () => {
